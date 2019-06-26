@@ -72,7 +72,7 @@ class Collection(mixins.TimestampsMixin, models.Model):
         ]
 
     def __str__(self):
-        return '{}.{}'.format(self.namespace.name, self.name)
+        return '{}.{}'.format(self.namespace, self.name)
 
     def inc_download_count(self):
         Collection.objects.filter(pk=self.pk).update(
@@ -125,7 +125,7 @@ class CollectionVersion(mixins.TimestampsMixin):
 
     def __str__(self):
         return '{}.{}-{}'.format(
-            self.collection.namespace.name,
+            self.collection.namespace,
             self.collection.name,
             self.version
         )
