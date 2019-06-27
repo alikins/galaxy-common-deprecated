@@ -17,7 +17,7 @@
 
 import logging
 
-# from django.conf import settings
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 
@@ -35,10 +35,12 @@ class Namespace(CommonModel):
     class Meta:
         ordering = ('name',)
 
-    #     settings.AUTH_USER_MODEL,
-    #     related_name='namespaces',
-    #     editable=True,
-    # )
+    owners = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='namespaces',
+        editable=True,
+    )
+
     avatar_url = models.CharField(
         max_length=256,
         blank=True,
